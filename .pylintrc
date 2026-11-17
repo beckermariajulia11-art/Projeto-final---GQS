@@ -1,0 +1,11 @@
+[MESSAGES CONTROL]
+disable = missing-module-docstring,
+          missing-function-docstring
+
+[FORMAT]
+max-line-length = 100
+
+[BASIC]
+function-naming-style = snake_case
+variable-naming-style = snake_case
+class-naming-style = PascalCase
