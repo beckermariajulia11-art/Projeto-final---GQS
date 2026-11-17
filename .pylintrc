@@ -9,3 +9,4 @@ max-line-length = 100
 function-naming-style = snake_case
 variable-naming-style = snake_case
 class-naming-style = PascalCase
+method-naming-style = camelCase
