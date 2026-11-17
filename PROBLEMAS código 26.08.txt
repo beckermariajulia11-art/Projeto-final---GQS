@@ -1,0 +1,12 @@
+PROBLEMAS
+
+- O uso de muitos if e else formam uma estrutura encadeada que dificulta a inclusão de novas informações.
+- O programa permite o cadastro de apenas três pessoas, e além disso ainda cria um if else específico para cada um dos cadastros ao invés de criar uma função que abranja e permita vários cadastros.
+- Cada operação tem duas ou três cópias quase idênticas do mesmo bloco de operações.
+- Só a pessoa 1 retorna maior idade na consulta, as pessoas 2 e 3 só retornam nome, e-mail e idade, a regra foi implementada uma vez e esquecida nas próximas vezes.
+- Regra de atualização do e-mail diferente entre as três pessoas, a pessoa 1 atualiza e-mail de forma diferente da pessoa 2 e 3.
+- Qualquer entrada inválida quebra o código
+- Variáveis mal nomeadas (uma letra)
+- Ausência total de funções
+
+
