@@ -1,10 +1,8 @@
-# Sistema de Cadastro de Pessoas - versao 3
-# Aula 3: construcao incremental com foco em qualidade
-# Mudanca 1: exibir_menu()
-# Mudanca 2: listas e cadastrar_pessoa() (fim do limite de tres pessoas)
+"""Sistema de Cadastro de Pessoas (nome, idade e e-mail) em linha de comando."""
 
 
 def exibir_menu():
+    """Mostra o menu principal e devolve a opção digitada, como inteiro."""
     print("=========================")
     print(" CADASTRO DE PESSOAS")
     print("=========================")
@@ -18,6 +16,7 @@ def exibir_menu():
 
 
 def cadastrar_pessoa(nomes, idades, emails):
+    """Lê nome, idade e e-mail e os acrescenta, na mesma posição, às três listas."""
     nome = input("Informe o nome: ")
     nomes.append(nome)
     idade = int(input("Informe a idade: "))
@@ -30,6 +29,7 @@ def cadastrar_pessoa(nomes, idades, emails):
         print("Situacao: Menor de idade")
 
 def exibir_pessoa(nomes, idades, emails, pos):
+    """Imprime os dados e a situação (maior/menor de idade) da pessoa na posição pos."""
     print("Nome: " + nomes[pos])
     print("Idade: " + str(idades[pos]))
     print("E-mail: " + emails[pos])
@@ -40,6 +40,7 @@ def exibir_pessoa(nomes, idades, emails, pos):
 
 
 def buscar_pessoa(nomes, nome_procurado):
+    """Devolve a posição de nome_procurado em nomes, ou -1 se não for encontrado."""
     pos = 0
     while pos < len(nomes):
         if nomes[pos] == nome_procurado:
@@ -49,6 +50,7 @@ def buscar_pessoa(nomes, nome_procurado):
 
 
 def consultar_pessoa(nomes, idades, emails):
+    """Pede um nome e exibe a pessoa correspondente, se ela existir."""
     procurado = input("Nome para consultar: ")
     pos = buscar_pessoa(nomes, procurado)
     if pos == -1:
@@ -58,6 +60,7 @@ def consultar_pessoa(nomes, idades, emails):
 
 
 def alterar_pessoa(nomes, idades, emails):
+    """Pede um nome e, se a pessoa existir, substitui nome, idade e e-mail."""
     procurado = input("Nome para alterar: ")
     pos = buscar_pessoa(nomes, procurado)
     if pos == -1:
@@ -71,6 +74,7 @@ def alterar_pessoa(nomes, idades, emails):
 
 
 def listar_pessoas(nomes, idades, emails):
+    """Exibe todas as pessoas cadastradas, com suas situações (maior/menor de idade)."""
     if len(nomes) == 0:
         print("Nenhuma pessoa cadastrada")
     pos = 0
@@ -80,7 +84,11 @@ def listar_pessoas(nomes, idades, emails):
         pos = pos + 1
     print("Total: " + str(len(nomes)))
 
+# Mantido de propósito: as muitas decisões desta função são o alvo da refatoração
+# planejada (separar faixa etária, e-mail, provedor e contato). Ver Aula 4.
+# pylint: disable-next=too-many-branches
 def analisar_pessoa(nomes, idades, emails):
+    """Pede um nome e, se a pessoa existir, analisa idade e e-mail."""
     procurado = input("Nome para analisar: ")
     pos = buscar_pessoa(nomes, procurado)
 
@@ -128,27 +136,33 @@ def analisar_pessoa(nomes, idades, emails):
             print("Menor de idade sem contato")
 
 
-nomes = []
-idades = []
-emails = []
+def main():
+    """Mantém as listas de pessoas e repete o menu até o usuário escolher sair."""
+    nomes = []
+    idades = []
+    emails = []
 
-op = 0
-while op != 6:
-    op = exibir_menu()
+    op = 0
+    while op != 6:
+        op = exibir_menu()
 
-    if op == 1:
-        cadastrar_pessoa(nomes, idades, emails)
-    elif op == 2:
-        consultar_pessoa(nomes, idades, emails)
-    elif op == 3:
-        alterar_pessoa(nomes, idades, emails)
-    elif op == 4:
-        listar_pessoas(nomes, idades, emails)
-    elif op == 5:
-        analisar_pessoa(nomes, idades, emails)
-    elif op == 6:
-        print("Saindo...")
-    else:
-        print("Opcao invalida")
+        if op == 1:
+            cadastrar_pessoa(nomes, idades, emails)
+        elif op == 2:
+            consultar_pessoa(nomes, idades, emails)
+        elif op == 3:
+            alterar_pessoa(nomes, idades, emails)
+        elif op == 4:
+            listar_pessoas(nomes, idades, emails)
+        elif op == 5:
+            analisar_pessoa(nomes, idades, emails)
+        elif op == 6:
+            print("Saindo...")
+        else:
+            print("Opcao invalida")
 
-print("Fim do programa")
+    print("Fim do programa")
+
+
+if __name__ == "__main__":
+    main()
