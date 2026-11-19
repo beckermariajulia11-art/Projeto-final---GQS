@@ -1,3 +1,5 @@
+[MAIN]
+init-hook = import sys; sys.path.append("cadastro/src") 
 [MESSAGES CONTROL]
 disable = missing-module-docstring,
           missing-function-docstring
