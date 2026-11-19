@@ -1,8 +1,9 @@
 repos:
   - repo: local
     hooks:
-      - id: pylint
-        name: pylint
-        entry: python -m pylint --rcfile=.pylintrc
+      - id: pytest
+        name: pytest
+        entry: python -m pytest -q
         language: system
-        types: [python]
+        pass_filenames: false
+        always_run: true
